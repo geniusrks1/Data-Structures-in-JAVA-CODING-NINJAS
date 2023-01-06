@@ -1,0 +1,24 @@
+public class Solution {
+	
+	public static boolean checkNumber(int input[], int x) {
+		int n=input.length;
+		return f(input,0,n-1,x);
+		
+	}
+private static boolean f(int arr[],int start, int end, int x){
+	
+if(arr[start]==x || arr[end]==x)
+return true;
+
+if(start>end)
+return false;
+
+	boolean smallAns=f(arr,start+1,end-1,x);
+	return smallAns;
+
+
+}
+
+
+
+}
