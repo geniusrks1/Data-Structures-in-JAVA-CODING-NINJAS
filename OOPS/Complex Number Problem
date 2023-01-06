@@ -1,0 +1,24 @@
+public class ComplexNumbers {
+int R;
+int I;
+//constructor
+    public ComplexNumbers(int R,int I){
+        this.R=R;
+        this.I=I;
+    }
+    // plus
+    public void plus(ComplexNumbers c2){
+    R=R+c2.R;
+    I=I+c2.I;
+    }
+	// multiply
+    public void multiply(ComplexNumbers c2){
+    int temp=R;
+    R=R*c2.R-I*c2.I;
+    I=c2.R*I +c2.I*temp;
+    }
+    public void print(){
+    System.out.print(R+" + "+"i"+I);
+    }
+    
+}
