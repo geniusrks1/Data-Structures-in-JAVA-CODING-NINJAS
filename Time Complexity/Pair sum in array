@@ -1,0 +1,51 @@
+// time complexity O(n+nlogn)
+
+public static int pairSum(int[] arr, int sum) {
+      int n=arr.length;
+      Arrays.sort(arr);
+	       int start=0;
+            int end=n-1;
+            int count=0;
+            while(start<end){
+                if(arr[start]+arr[end]<sum){
+                    start++;
+                }
+                else if(arr[start]+arr[end]>sum){
+                    end--;
+                }
+                else{
+
+                     int combinations=0;
+
+                      if(arr[start] == arr[end]) {
+                        combinations = ((end-start+1)*(end-start))/2;
+                        count+=combinations;
+                        break;
+                         }
+
+                         else{
+						 
+                    int count1=0;
+                    int count2=0; 
+                    for(int start1=start;start1<=end;start1++) { 
+                        if(arr[start1] == arr[start]) 
+                            count1++; 
+                        else 
+                            break; 
+                    } 
+                    
+                    for(int end1= end;end1>=start;end1--) { 
+                        if(arr[end1] == arr[end]) 
+                            count2++; 
+                        else 
+                            break; 
+                    } 
+                    
+                    combinations = count1*count2; 
+                        count+=combinations;
+                        start=start +count1; 
+                        end=end - count2; 
+            	}}
+        	}
+		return count;
+}}
