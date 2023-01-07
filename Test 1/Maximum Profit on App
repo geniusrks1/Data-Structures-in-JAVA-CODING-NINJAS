@@ -1,0 +1,23 @@
+
+
+// TC=O(NLOGN +N); 
+
+import java.util.Arrays;
+public class solution {
+
+	public static int maximumProfit(int budget[]) {
+	Arrays.sort(budget);
+	int n=budget.length;
+int maxprofit=0;
+
+for(int i=0;i<n;i++){
+	int profit=budget[i]*(n-i);
+if(profit>maxprofit)
+maxprofit=profit;
+
+}
+
+return maxprofit;
+
+	}
+}
