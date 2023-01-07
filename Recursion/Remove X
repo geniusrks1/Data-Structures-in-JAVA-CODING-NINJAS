@@ -1,0 +1,19 @@
+public class solution {
+
+	public static String removeX(String input){
+
+
+if(input.length()==0)
+	return "";
+
+else if(input.charAt(0)=='x'){
+		String smallAns= removeX(input.substring(1));
+		return smallAns;
+	}
+	else{
+	String smallAns= input.charAt(0)+removeX(input.substring(1));
+	return smallAns;
+	
+	}
+	}
+}
