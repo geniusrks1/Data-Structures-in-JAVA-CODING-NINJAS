@@ -1,0 +1,39 @@
+// FINDING SUM TIMECOMPLEXITY O(N)
+// TRAVELING COMPLETE ARRAY AND LEFTSUM INCRESES AND RIGHTSUM DECREASES EVERY TIME TC O(N)
+TOTAL TIME COMPLEXITY O(N+N)=O(2N)
+
+
+
+
+public class Solution {
+    public static int sum(int arr[],int n){  
+		   if (n <= 0)
+	            return 0;
+		   
+		 return arr[n-1]+sum(arr,n-1);
+	        
+	    }
+    
+	public static int arrayEquilibriumIndex(int[] arr){  
+	     int n=arr.length;
+       
+        if (n==1||n==0)
+          return -1;
+      
+        	//initilising left and right sum
+        
+	     int sumleft=0;
+	     int  sumright=sum(arr,arr.length)-arr[0];
+	     // loop for checking equal or not 
+	    
+	     for(int i=1;i<n;i++) {
+	    	
+	    		 sumright-=arr[i];
+	    	     sumleft+=arr[i-1];
+	    	     if(sumleft==sumright)
+	    		   return i;
+	     }
+	        
+	        return -1;
+     
+}}
