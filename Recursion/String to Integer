@@ -1,0 +1,19 @@
+public class Solution {
+
+	public static int convertStringToInt(String input){
+		int n=input.length();
+
+
+if(n==0)
+return  0;
+
+
+int lastdigit=input.charAt(n-1)-'0';
+int smallans= convertStringToInt(input.substring(0,n-1));
+
+
+return smallans*10+lastdigit;
+
+
+	}
+}
