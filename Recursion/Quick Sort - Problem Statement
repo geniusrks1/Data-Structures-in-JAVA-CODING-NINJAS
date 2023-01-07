@@ -1,0 +1,55 @@
+public class Solution {
+	
+	public static void quickSort(int[] input) {
+     int n=input.length;
+		quickSort(input,0,n-1);
+		
+	}
+    
+    public static void quickSort(int arr[],int startindex,int endindex){
+        
+        if(startindex>endindex)
+            return;
+        
+        int pivotindex=partition(arr,startindex,endindex);
+        quickSort(arr,startindex,pivotindex-1);
+        quickSort(arr,pivotindex+1,endindex);
+    }
+
+
+
+    public static int partition(int arr[],int start,int end){
+        int pivotelement=arr[start];
+        int smallcount=0;
+        for(int i=start+1;i<=end;i++){
+           if(arr[i]<pivotelement)
+               smallcount++;
+        }
+        
+     int pi = start+smallcount;
+     swap(arr, start, pi);
+  
+        
+    
+        while(start<end){
+            if(arr[start]<pivotelement)
+                start++;
+            else if(arr[end]>=pivotelement)
+                end--;
+            else {
+              swap(arr,start,end);
+                start++;
+                end--;
+            }  
+        }
+        
+        return pi;
+        
+    }
+    public static void swap(int arr[], int start, int end){
+        int temp=arr[start];
+        arr[start]=arr[end];
+        arr[end]=temp;
+    }
+	
+}
