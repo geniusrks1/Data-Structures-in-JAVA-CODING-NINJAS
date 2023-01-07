@@ -1,0 +1,67 @@
+
+//time complexity O(n^2+nlogn)
+
+import java.util.Arrays;
+public class Solution {	
+
+	public static int tripletSum(int[] arr, int sum) {
+		
+        
+       Arrays.sort(arr);
+        int count=0;
+       int n=arr.length;
+        
+        for(int i=0;i<n;i++){
+            int start=i+1;
+            int end=n-1;
+            int a=arr[i];
+
+
+
+           while(start<end){
+                if(arr[start]+arr[end]+a<sum){
+                    start++;
+                }
+                else if(arr[start]+arr[end]+a>sum){
+                    end--;
+                }
+                else{
+
+                     int combinations=0;
+
+                      if(arr[start] == arr[end]) {
+                          int x=end-start;
+                        combinations = ((x+1)*(x))/2;
+                        count+=combinations;
+                      break;
+                         }
+
+                         else{
+						 
+                    int count1=0;
+                    int count2=0; 
+                    for(int start1=start;start1<=end;start1++) { 
+                        if(arr[start1] == arr[start]) 
+                            count1++; 
+                        else 
+                            break; 
+                    } 
+                    
+                    for(int end1= end;end1>=start;end1--) { 
+                        if(arr[end1] == arr[end]) 
+                            count2++; 
+                        else 
+                            break; 
+                    } 
+                    
+                    combinations = count1*count2; 
+                        count+=combinations;
+                        start=start +count1; 
+                        end=end - count2; 
+            	}}
+        	}
+
+
+			
+		}
+        return count;}}
