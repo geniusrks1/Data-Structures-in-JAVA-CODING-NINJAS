@@ -1,0 +1,24 @@
+
+public class Solution {
+
+	public static int firstIndex(int input[], int x) {
+	int n=input.length;
+	return f(input,0,n-1,x);
+		
+	}
+	
+private static int f(int arr[], int start, int end, int x){
+
+	if(start>end)
+    return -1;
+
+	if(arr[start]==x)
+	return start;
+
+
+
+int smallAns=f(arr, start+1,end,x);
+return smallAns;
+}
+
+}
