@@ -1,0 +1,41 @@
+// method 1 using extra space sc =O(n), TC =O(n+n)
+
+
+public class Solution {  
+
+    public static void rotate(int[] arr, int d) {
+    	//left shift by d places
+        int n=arr.length;
+        int arr2[]=new int[n];
+        
+        for(int i=0;i<n-d;i++){
+            arr2[i]=arr[i+d];
+        }
+        for(int j=n-d;j<n;j++){
+            arr2[j]=arr[j-(n-d)];
+        }
+        for(int i=0;i<n;i++){
+            arr[i]=arr2[i];
+        }
+
+}}
+
+// method 2 without extra space sc =O(1), TC =O(n/2+n/2)=O(n)
+
+int n=arr.length;
+rotate(arr,0,d-1);
+rotate(arr,d,n-1);
+rotate(arr,0,n-1);
+
+
+}
+public static void rotate(int arr[], int start, int end){
+   while(start<end){
+     int temp=arr[start];
+     arr[start]=arr[end];
+     arr[end]=temp;
+       start++;
+       end--;
+   }
+}
+}
