@@ -1,0 +1,24 @@
+public class solution {
+
+	public static boolean splitArray(int input[]) {
+		return splitArray(input ,0,0,0);
+	}
+    
+	private static boolean splitArray(int input[] ,int si,int leftSum ,int rightSum){
+        if(input.length == si){
+            return  leftSum==rightSum;
+        }
+
+         else if(input[si] % 3 == 0){
+                leftSum += input[si];
+            }else if(input[si] % 5 == 0){
+                rightSum += input[si];
+            }else{
+               return splitArray(input,si+1,leftSum+input[si],rightSum) || splitArray(input,si+1,leftSum,rightSum+input[si]) ;
+            }
+
+         return splitArray(input,si+1,leftSum,rightSum) ;
+      
+    }
+
+}
