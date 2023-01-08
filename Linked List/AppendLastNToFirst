@@ -1,0 +1,44 @@
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+public class Solution {
+
+	public static LinkedListNode<Integer> appendLastNToFirst(LinkedListNode<Integer> head, int n) {
+         if (head == null || n == 0)
+                return head;
+		
+        LinkedListNode<Integer> temp=head;
+        int count=1;
+        while(temp.next!=null ){  // length code // gives the last node reference
+            temp=temp.next;
+            count++;
+        }
+      
+        LinkedListNode<Integer> temp1=head;
+
+        for(int i=0;i<count-1-n;i++)
+          temp1 = temp1.next;
+        
+        
+        LinkedListNode<Integer> newHead=temp1.next;
+        
+        temp1.next=null;
+        temp.next=head;
+        return newHead;
+
+
+	}
+
+}
