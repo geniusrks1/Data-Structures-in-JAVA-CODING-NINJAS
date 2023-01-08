@@ -1,0 +1,35 @@
+public static boolean isPalindrome(LinkedListNode<Integer> head) {
+		if(head==null)
+		return true;
+	
+	 LinkedListNode<Integer> slow = head;
+	 LinkedListNode<Integer> fast = head;
+	
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        LinkedListNode<Integer>  prev = slow;
+        slow = slow.next;
+        prev.next = null;
+        // reversing linkedlist
+        while (slow != null) {
+         LinkedListNode<Integer>   temp = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = temp;
+        }
+      
+     
+        while (prev  != null) {
+            if (head.data != prev.data) 
+			      return false;
+            head = head.next;
+            prev = prev.next;
+        }
+        return true;
+	}
+
+}
