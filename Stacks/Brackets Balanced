@@ -1,0 +1,28 @@
+import java.util.Stack;
+import java.util.ArrayList;
+public class Solution {
+
+    public static boolean isBalanced(String expression) {     
+      int n=expression.length();
+ Stack<Character> st = new Stack<>();
+     for(int i=0;i<n;i++){
+    
+                if(expression.charAt(i)=='(')
+                  st.push(expression.charAt(i));
+
+                 else {
+                    
+                 if(st.isEmpty())
+                     return false;
+                  else if(st.peek()=='(')
+                   st.pop();
+                  else
+                   return false; 
+               }
+               
+             } 
+        return st.isEmpty();
+    }
+}
+
+ 
