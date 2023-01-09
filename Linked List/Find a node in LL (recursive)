@@ -1,0 +1,32 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+public class Solution {
+
+
+	public static int findNodeRec(LinkedListNode<Integer> head, int n) {
+       return findnode(head,0,n);  
+	}
+    public static int findnode(LinkedListNode<Integer> head,int count, int n) {
+        //base case
+        if(head==null)
+            return -1;
+        if(head.data==n)
+            return count;
+  
+        return findnode(head.next,count+1,n);
+	}
+
+}
