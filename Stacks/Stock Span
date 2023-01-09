@@ -1,0 +1,32 @@
+import java.util.Stack;
+import java.util.ArrayList;
+public class Solution {
+
+	public static int[] stockSpan(int[] price) {
+	int n=price.length;
+    int ans[]=new int[n]; 
+    Stack<Integer> st= new Stack<>();
+
+st.push(0);
+ans[0]=1;
+
+for(int i=1;i<n;i++){
+    while(!st.isEmpty() && price[st.peek()]<price[i]){
+        st.pop();}
+    
+
+    if(st.isEmpty()){
+        ans[i]=i+1;}
+    
+    else{
+        ans[i]=i-st.peek();}
+    
+
+    st.push(i);
+}
+
+return ans;
+
+	}
+
+}
