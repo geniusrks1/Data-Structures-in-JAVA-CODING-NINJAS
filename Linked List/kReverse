@@ -1,0 +1,44 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+public class Solution {
+
+	public static LinkedListNode<Integer> kReverse(LinkedListNode<Integer> head, int k) {
+	if(k==0||k==1)
+    return head;
+
+LinkedListNode<Integer> curr=head;
+LinkedListNode<Integer> prev= null;
+LinkedListNode<Integer> forw= null;
+
+int count=0;
+// reverse first k nodes of linklist
+while(count<k && curr!=null){
+    forw=curr.next;
+    curr.next=prev;
+    prev=curr;
+    curr=forw;
+    count++;
+}
+
+if(forw!=null)
+head.next=kReverse(forw,k);
+
+return prev;
+
+
+	}
+
+}
