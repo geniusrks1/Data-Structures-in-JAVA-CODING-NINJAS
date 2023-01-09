@@ -1,0 +1,47 @@
+/* //method 1 using extra stack
+
+import java.util.Stack;
+public class Solution {
+
+	public static void reverseStack(Stack<Integer> input, Stack<Integer> extra) {
+
+		Stack<Integer> extra2=new Stack<>();
+        while(!input.isEmpty())
+            extra.push(input.pop());
+        
+        while(!extra.isEmpty())
+            extra2.push(extra.pop());
+        
+        while(!extra2.isEmpty())
+            input.push(extra2.pop());   
+	}
+}  */
+
+
+//method 2 using recursion
+
+
+
+import java.util.Stack;
+public class Solution {
+
+	public static void reverseStack(Stack<Integer> input, Stack<Integer> extra) {
+
+        if (input.isEmpty()) 
+            return;
+        
+        int item=input.pop();
+        reverseStack(input,extra);
+          
+
+        while(!input.isEmpty())
+            extra.push(input.pop());
+        
+          input.push(item);
+
+        while(!extra.isEmpty())
+            input.push(extra.pop());
+         
+        
+	}
+}
