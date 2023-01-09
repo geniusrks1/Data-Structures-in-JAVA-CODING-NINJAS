@@ -1,0 +1,30 @@
+public class StackUsingArray{
+private int arr[];
+private int topIndex;
+
+public StackUsingArray(){
+arr=new int[10];
+topIndex=-1;
+}
+
+public int size(){
+return topIndex+1;
+}
+
+public boolean isEmpty(){
+return topIndex==-1;
+}
+public int peek(){
+return arr[top];
+}
+public void push(int elem){
+arr[++topIndex]=elem;
+}
+
+public int pop(){
+int temp=arr[topIndex];
+topIndex--;
+return temp;
+}
+
+}
