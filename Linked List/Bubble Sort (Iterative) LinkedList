@@ -1,0 +1,77 @@
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+public class Solution {
+
+	public static LinkedListNode<Integer> bubbleSort(LinkedListNode<Integer> head) {
+		int n=length(head);
+		for(int i=0;i<n-1;i++){
+			LinkedListNode<Integer> curr=head;
+			LinkedListNode<Integer> prev=null;
+
+			for(int j=0;j<n-1-i;j++){
+            if(curr.data<=curr.next.data){
+				// no swap
+				prev=curr;
+				curr=curr.next;
+			}
+        else{
+			if(prev==null){
+	        LinkedListNode<Integer> temp=curr.next;
+			head=head.next;
+			curr.next=temp.next;
+			temp.next=curr;
+			prev=temp;
+
+
+
+			}
+			else{
+            LinkedListNode<Integer> temp=curr.next;
+			prev.next=temp;
+			curr.next=temp.next;
+			temp.next=curr;
+			prev=temp;
+
+
+			}
+		}
+
+
+
+
+
+
+			}
+
+		}
+
+return head;
+
+
+
+	}
+
+
+public static int length(LinkedListNode<Integer>head){
+	int count=0;
+	while(head!=null){
+		count++;
+		head=head.next;
+	}
+	return count;
+}
+
+}
