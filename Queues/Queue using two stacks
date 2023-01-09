@@ -1,0 +1,42 @@
+public class QueueUsingStack<T>{
+Stack<T>st1=new Stack<>();
+Stack<T>st1=new Stack<>();
+
+
+
+
+public void enQueue(int x)
+    {
+        while (!st1.isEmpty())
+        {
+            s2.push(s1.pop());
+          
+        }
+ 
+      
+        s1.push(x);
+ 
+        
+        while (!s2.isEmpty())
+        {
+            s1.push(s2.pop());
+       
+        }
+    }
+ 
+    
+   public int deQueue()
+    {
+      
+        if (s1.isEmpty())
+        {
+           return -1;
+        }
+ 
+        int x = s1.pop();
+        
+        return x;
+    }
+}
+
+}
