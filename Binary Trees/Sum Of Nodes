@@ -1,0 +1,29 @@
+*
+
+	Following is the Binary Tree Node class structure.
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+ */
+
+public class Solution {
+
+	public static int getSum(BinaryTreeNode<Integer> root) {
+        // base case
+        if(root==null)
+            return 0;
+			int smallans=getSum(root.right)+getSum(root.left);
+		return root.data+smallans;
+	}
+
+}
