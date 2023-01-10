@@ -1,0 +1,62 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+
+	public static void rootToLeafPathsSumToK(BinaryTreeNode<Integer> root, int k) {
+  // method1
+	// f(root,k,"");
+	// }
+
+    // public static void f(BinaryTreeNode<Integer> root, int k, String s){
+    //     if(root==null)
+    //         return ;
+        
+    //    else if(root.left==null && root.right==null && root.data==k){
+    //         System.out.println(s+root.data);
+    //     }
+        
+	  // 	else{
+    //     s+=root.data+" "; 
+    //     f(root.left,k-root.data,s);
+    //     f(root.right,k-root.data,s);
+    // }}
+    
+    // method2 same logic as method one but using extra variable
+
+helper(root, k, "", 0);
+}
+
+public static void helper(BinaryTreeNode<Integer> root, int k, String path,int currSum) {
+if (root== null)
+return;
+
+else if( root.left == null && root.right == null ){
+currSum+=  root.data;
+if (currSum== k){
+System.out.println(path + ""+root.data+ " ");
+return;
+}
+return;
+}
+else{
+helper(root.left, k, (path + root.data + " "), currSum + root.data);
+helper(root.right, k, (path + root.data + " "), currSum + root.data);
+
+}
+}}
