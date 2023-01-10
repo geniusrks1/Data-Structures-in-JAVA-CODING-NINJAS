@@ -1,0 +1,79 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+ */
+
+
+public class Solution {
+//1.method1
+    // public static int  maximum(int a,int b, int c){
+    //     if(a>=b&&a>=c)
+    //         return a;
+    //     else if(b>a&&b>c)
+    //         return b;
+    //     else 
+    //         return c;
+        
+    // }
+    //   public static int minimum(int a,int b, int c){
+    //     if(a<=b&&a<=c)
+    //         return a;
+    //     else if(b<=a&&b<=c)
+    //         return b;
+    //     else 
+    //         return c;
+        
+    // }
+    // public static int max(BinaryTreeNode<Integer> root){
+    //     if(root==null)
+    //         return Integer.MIN_VALUE;
+        
+    //     return maximum(root.data,max(root.left),max(root.right));
+    // }
+    //  public static int min(BinaryTreeNode<Integer> root){
+    //     if(root==null)
+    //         return Integer.MAX_VALUE;
+        
+    //     return minimum(root.data,min(root.left),min(root.right));
+    // }
+    
+
+	// public static boolean isBST(BinaryTreeNode<Integer> root) {
+
+	// 	if(root==null)
+    //         return true;
+    //     if(max(root.left)>=root.data)
+    //         return false;
+    //     if(min(root.right)<root.data)
+    //         return false;
+    //     return isBST(root.left)&&isBST(root.right);
+        
+	// }
+
+// method 2 improved
+public static boolean isBST(BinaryTreeNode<Integer> root) {
+ return f(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+}
+
+private static boolean f(BinaryTreeNode<Integer> root, int min, int max){
+if(root==null)
+return true;
+
+else if(root.data>min && root.data<=max)
+return f(root.left,min,root.data-1) && f(root.right,root.data,max);
+else
+return false;
+}}
