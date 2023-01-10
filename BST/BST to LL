@@ -1,0 +1,70 @@
+public class Solution {
+
+	/*
+	 * Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> { T data; BinaryTreeNode<T> left; BinaryTreeNode<T>
+	 * right;
+	 * 
+	 * public BinaryTreeNode(T data) { this.data = data; } }
+	 */
+
+	/*
+	 * LinkedList Node Class
+	 *
+	 * 
+	 * class LinkedListNode<T> { T data; LinkedListNode<T> next;
+	 * 
+	 * public LinkedListNode(T data) { this.data = data; } }
+	 */
+
+	public static LinkedListNode<Integer> constructLinkedList(BinaryTreeNode<Integer> root) {
+       Pair ans=helper(root);
+        return ans.head;
+        }
+    public static Pair helper(BinaryTreeNode<Integer> root){
+        if(root==null)
+      return new Pair(null,null);
+    
+        Pair lefttree=helper(root.left);
+        Pair righttree=helper(root.right);
+
+        LinkedListNode<Integer> newNode = new LinkedListNode<>(root.data);
+
+
+if(lefttree.head!=null && righttree.head==null){
+     lefttree.tail.next=newNode;
+     newNode.next=null;
+     return new Pair(lefttree.head,newNode);
+}
+
+
+else if(lefttree.head!=null && righttree.head!=null){
+     lefttree.tail.next=newNode;
+     newNode.next=righttree.head;
+     return new Pair(lefttree.head,righttree.tail);
+}
+
+else if(lefttree.head==null && righttree.head!=null){
+    
+     newNode.next=righttree.head;
+     return new Pair(newNode,righttree.tail);
+}
+
+else{ //(lefttree.head==null && righttree.head==null){
+   
+     newNode.next=righttree.head;
+     return new Pair(newNode,newNode);
+}
+
+}}
+
+class Pair{
+    LinkedListNode<Integer> head;
+    LinkedListNode<Integer> tail;
+    public Pair(LinkedListNode<Integer> head,LinkedListNode<Integer> tail ){
+        this.head=head;
+        this.tail=tail;
+    }
+}
+	
