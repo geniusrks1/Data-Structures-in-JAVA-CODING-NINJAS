@@ -1,0 +1,76 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+
+
+public class Solution {
+
+	public static void nodesAtDistanceK(BinaryTreeNode<Integer> root, int node, int k) {
+	    //Your code goes here
+	int x=	printKDistanceNode(root,node,k);
+	}
+	private static void printKDistanceNodeFromRoot(BinaryTreeNode<Integer>node,int k)
+	{
+		if(node==null)
+		return;
+
+		if(k==0 && node!=null)
+		{
+			System.out.println(node.data);
+			return;
+		}
+		printKDistanceNodeFromRoot(node.left,k-1);
+		printKDistanceNodeFromRoot(node.right,k-1);
+	}
+
+
+	private  static int printKDistanceNode(BinaryTreeNode<Integer>root,int TARGET,int k)
+	{
+		if(root==null)
+		return-1;
+
+		if(root.data==TARGET)
+		{
+			printKDistanceNodeFromRoot(root,k);
+			return 0;
+		}
+		int ld=printKDistanceNode(root.left,TARGET,k);
+		if(ld!=-1)
+		{
+			if(ld+1==k)
+			System.out.println(root.data);
+			else
+			printKDistanceNodeFromRoot(root.right,k-ld-2);
+			return 1+ld;
+		}
+		int rd=printKDistanceNode(root.right,TARGET,k);
+		if(rd!=-1)
+		{
+			if(rd+1==k)
+			System.out.println(root.data);
+			else
+			printKDistanceNodeFromRoot(root.left,k-rd-2);
+			return 1+rd;
+		}
+		return -1;
+	}
+
+}
+
+
+
