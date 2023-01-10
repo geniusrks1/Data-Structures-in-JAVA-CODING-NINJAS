@@ -1,0 +1,49 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+
+	public static BinaryTreeNode<Integer> buildTree(int[] postOrder, int[] inOrder) {
+	
+       int n=postOrder.length; 
+return buildTreeHelper(postOrder,0,n-1,inOrder,0,n-1);
+
+	}
+
+public static BinaryTreeNode<Integer> buildTreeHelper(int[] postOrder,int poststart,int postend,int [] inOrder,int instart,int inend ){
+	if(poststart>postend || instart>inend)
+	return null;
+
+
+
+	int rootval=postOrder[postend];
+	BinaryTreeNode<Integer> root=new BinaryTreeNode<>(rootval);
+
+	// find parent element index from inorder array
+	int k=0;
+	for( k=instart;k<=inend;k++){
+		if(rootval==inOrder[k]){
+			break;
+		}
+	}
+
+	root.left= buildTreeHelper(postOrder,poststart,poststart+k-instart-1,inOrder,instart,k-1);
+	root.right= buildTreeHelper(postOrder,poststart+k-instart,postend-1,inOrder,k+1,inend);
+
+return root;
+}}
