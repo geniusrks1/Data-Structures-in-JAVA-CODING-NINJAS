@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class Solution {
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	
+public static TreeNode<Integer> findNextSmallerNode(TreeNode<Integer> root, int max){	 
+    int childCount = root.children.size();
+        
+    if(childCount==0 && root.data<max) 
+          return root; 
+    
+    TreeNode<Integer> node = null;
+        
+    if(root.data<max)
+    node=root;
+        
+    for(int i=0; i<childCount; i++){
+        TreeNode<Integer> temp = findNextSmallerNode(root.children.get(i), max);
+         if(temp==null)
+            continue;
+        if(node==null || node.data<temp.data)
+            node = temp;
+    }
+    return node;
+}
+    
+    public static int max(TreeNode<Integer> root){
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<root.children.size();i++){
+            int childmax=max(root.children.get(i));
+            max=Math.max(childmax,max);
+        }
+        return Math.max(root.data,max);
+    }
+    
+	
+	public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root){
+        int max=max(root);
+        TreeNode<Integer> second_largest=findNextSmallerNode(root,max);
+        return second_largest;
+        
+        
+
+	}
+	
+	
+}
