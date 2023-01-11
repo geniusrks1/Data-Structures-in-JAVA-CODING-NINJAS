@@ -1,0 +1,19 @@
+import java.util.HashMap;
+
+public class Solution {
+
+	public static String uniqueChar(String str){
+		// create one string
+        // create a map
+        HashMap<Character,Boolean> map= new HashMap<>();
+        String s="";
+        
+        for(int i=0;i<str.length();i++){
+            if(!map.containsKey(str.charAt(i))){
+                  map.put(str.charAt(i),true);
+                   s+=str.charAt(i);
+        }}
+        return s;
+
+	}
+}
