@@ -1,0 +1,36 @@
+public class Solution {
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	
+	public static boolean checkIdentical(TreeNode<Integer> root1, TreeNode<Integer> root2){
+        int r1size=root1.children.size();
+         int r2size=root2.children.size();
+		 
+    
+        if(r1size!=r2size)
+            return false;
+      
+        if(root1.data!=root2.data)
+           return false;
+        
+        
+        for(int i=0;i<r1size;i++){
+            if(!checkIdentical(root1.children.get(i),root2.children.get(i)))
+                return false;
+        }
+    
+        return true;
+            
+	}
+	
+}
