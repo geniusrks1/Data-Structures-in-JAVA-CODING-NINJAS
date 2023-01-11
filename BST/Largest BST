@@ -1,0 +1,54 @@
+public class Solution {
+	/*
+	 * BinaryTreeNode class
+	 * 
+	 * class BinaryTreeNode<T> 
+	 * { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 *		public BinaryTreeNode(T data) 
+	 *		{
+	 *  		this.data = data; 
+	 *  	} 
+	 *  }
+	 */
+	
+	public static int largestBSTSubtree(BinaryTreeNode<Integer> root) {
+		if (isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE)) 
+            return height(root);
+			
+        return Math.max(largestBSTSubtree(root.left), largestBSTSubtree(root.right));
+	}
+
+   
+    
+    
+    
+    
+    public static int height(BinaryTreeNode<Integer> root) {
+		if(root==null)
+            return 0;
+        return 1+Math.max(height(root.left),height(root.right)); 
+	}
+    
+    
+    
+    
+    
+    
+    
+    public static boolean isBST(BinaryTreeNode<Integer> node, int min, int max){
+        // base case
+        if (node == null) 
+            return true;
+        // if the node's value falls outside the valid range
+        if (node.data < min || node.data > max) 
+            return false;
+        
+        // recursively check left and right subtrees with updated range
+        return isBST(node.left, min, node.data) && isBST(node.right, node.data, max);
+    }
+}
+	
+
