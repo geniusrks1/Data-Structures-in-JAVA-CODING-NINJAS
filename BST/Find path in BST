@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class Solution {
+
+	
+
+	public static ArrayList<Integer> getPath(BinaryTreeNode<Integer> root, int data){
+	 if(root==null)
+            return null;
+
+       else if(root.data==data)   {
+            ArrayList<Integer> output=new ArrayList<>();
+            output.add(root.data);
+            return output;
+        }
+
+
+      else  if(data<root.data){
+            ArrayList<Integer> output=getPath(root.left,data);
+            if(output!=null) {
+                output.add(root.data);
+                return output;
+            }
+        }
+        
+        
+    else { // if(data>root.data)
+            ArrayList<Integer>  output2=getPath(root.right,data);
+            if(output2!=null){
+                output2.add(root.data);
+                return output2;}}
+
+
+           return null;
+
+		
+	}
+}
