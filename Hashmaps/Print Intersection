@@ -1,0 +1,31 @@
+import java.util.Set;
+public class Solution {
+
+	public static void printIntersection(int[] arr1,int[] arr2){
+	int n1=arr1.length;
+     int n2=arr2.length;
+        
+        HashMap<Integer,Integer>map= new HashMap<>();
+        
+    
+        
+// converting first array into hashmap
+        for(int i=0;i<n1;i++){
+            if(map.containsKey(arr1[i]))
+                map.put(arr1[i],map.get(arr1[i])+1);
+            else
+                map.put(arr1[i],1);
+        }
+       
+        // now checking in array2 for map keys
+        
+        for(int i=0;i<n2;i++){
+            if(map.containsKey(arr2[i]) && map.get(arr2[i])>0 ){
+                    System.out.println(arr2[i]);
+                    map.put(arr2[i],map.get(arr2[i])-1);
+                   
+                   }
+                   else{
+                       map.remove(arr2[i]);
+                   }
+                   }}}
