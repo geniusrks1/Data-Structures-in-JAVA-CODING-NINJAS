@@ -1,0 +1,27 @@
+import java.util.HashMap;
+public class Solution {
+
+	public static int getPairsWithDifferenceK(int arr[], int k) {
+
+HashMap<Integer,Integer> map=new HashMap<>(); 
+int count=0;
+
+for (int element: arr){
+int a= element - k;
+int b= element + k;
+if(map.containsKey(a))
+	count+=map.get(a);
+
+if(k!=0 && map.containsKey(b))
+count+=map.get(b);
+
+
+if(map.containsKey(element))
+map.put(element,map.get(element)+1);
+else
+map.put(element,1);
+
+}
+return count;
+	}
+}
