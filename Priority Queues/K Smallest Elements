@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.*;
+public class Solution {
+
+	public static ArrayList<Integer> kSmallest(int n, int[] input, int k) {
+		 PriorityQueue<Integer> pq = new PriorityQueue<>();
+        // by default its  min priority queue
+       
+        for(Integer i:input)
+           pq.add(i);
+ 
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        while(k-->0)
+            ans.add(pq.remove());
+        
+        return ans;
+	}
+		
+	}
