@@ -43,3 +43,30 @@ public class Solution {
 
 	}
 }
+
+// using recursion
+/* if(M ==0)
+            return null;
+
+if(head==null)
+return head;
+
+        LinkedListNode<Integer> t1 = head;
+        LinkedListNode<Integer> t2=null;
+        LinkedListNode<Integer> t3=null;
+// skipping m nodes
+ for(int i=0;t1!=null && i<M;i++){
+     t2=t1;
+     t1=t1.next;
+ }
+
+// deleting n nodes
+for(int i=0;t1!=null && i<N;i++){
+     t3=t1.next;
+     t1=t3;
+ }
+
+t2.next=t1;
+skipMdeleteN(t1,  M,  N);
+return head;
+*/
