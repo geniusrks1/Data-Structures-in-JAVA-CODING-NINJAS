@@ -1,0 +1,34 @@
+import java.util.*;
+public class Solution {
+
+	public static int kthLargest(int n, int[] input, int k) {
+
+        // using max heap
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (Integer i : input)
+            pq.add(i);
+
+        while (k-- > 1)
+            pq.poll();
+        return pq.peek();
+
+
+// using min heap
+	// PriorityQueue<Integer>pq= new PriorityQueue<>();
+    //     for(int i=0;i<k;i++){
+    //         pq.add(input[i]);
+    //     }
+        
+        
+    //     for(int i=k;i<n;i++){
+    //         if(pq.peek()<input[i]){
+    //             pq.poll();
+    //             pq.add(input[i]);
+    //         }
+                
+    //     }
+    //     return pq.peek();
+
+
+	}
+}
