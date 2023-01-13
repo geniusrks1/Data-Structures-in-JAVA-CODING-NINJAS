@@ -1,0 +1,52 @@
+public class Solution {
+
+	public static void inplaceHeapSort(int arr[]) {
+	 int n = arr.length;
+ 
+        // Build heap (rearrange array)
+        for (int i = (n /2)-1; i >= 0; i--)          
+            heapify(arr, i, n);
+ 
+        // One by one extract an element from heap
+        for (int i = n - 1; i > 0; i--) {
+            swap(arr,0,i);
+            heapify(arr, 0, i);
+        }
+	}
+ 
+  
+  public static  void heapify(int arr[], int i, int n) {
+   
+        int parentIndex = i; 
+        int leftchildIndex = 2 *parentIndex + 1;
+        int rightchildIndex = 2 * parentIndex + 2; 
+ 
+
+while(leftchildIndex<n){
+    // finding min 
+    int minIndex=parentIndex;
+    if(arr[leftchildIndex]<arr[minIndex])
+    minIndex=leftchildIndex;
+    if(rightchildIndex<n && arr[rightchildIndex]<arr[minIndex])
+    minIndex=rightchildIndex;
+
+
+    if(minIndex==parentIndex) 
+    return;
+
+    swap(arr,parentIndex,minIndex);
+
+    parentIndex=minIndex;
+    leftchildIndex= 2 * parentIndex + 1;
+    rightchildIndex= 2 * parentIndex + 2;
+
+}
+    }
+
+public static void swap(int arr[], int y, int x){
+    int temp=arr[x];
+    arr[x]=arr[y];
+    arr[y]=temp;
+}
+
+}
