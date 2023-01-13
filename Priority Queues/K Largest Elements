@@ -1,0 +1,42 @@
+
+// USING MIN HEAP
+import java.util.ArrayList;
+import java.util.*;
+public class Solution {
+
+	public static ArrayList<Integer> kLargest(int input[], int k) {
+		 PriorityQueue<Integer> pq = new PriorityQueue<>();
+        // by default its  min priority queue
+        for(int i=0;i<k;i++)
+           pq.add(input[i]);
+
+        
+      
+        for(int i=k;i<input.length;i++){
+            if(pq.peek()<input[i]){
+                pq.remove();
+                pq.add(input[i]);
+            }}
+
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        while(!pq.isEmpty())
+           ans.add(pq.remove());
+        
+        return ans;
+	}
+		
+	}
+  
+  
+   /*  // USING MAX PQ
+    PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+    for(int i=0;i<input.length;i++)
+    pq.add(input[i]);
+
+
+ArrayList<Integer> ans = new ArrayList<>();
+while(k-->0)
+ans.add(pq.remove());
+
+return ans;*/
