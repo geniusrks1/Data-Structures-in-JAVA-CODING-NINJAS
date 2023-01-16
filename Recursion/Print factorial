@@ -1,0 +1,8 @@
+public static void fact(int input, int answer) {
+if (input == 0) {
+System.out.println(answer);
+return;
+}
+answer = answer * input;
+fact(input-1,answer);
+}
