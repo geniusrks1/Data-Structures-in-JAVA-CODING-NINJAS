@@ -1,0 +1,84 @@
+public class Solution {
+	
+		
+public static void placeNQueens(int n){
+		
+        int[][] board = new int[n][n];
+        f(board, 0, n);
+
+    }
+    public static void f(int[][] board, int row, int N) {
+        //        valid board configuration
+        if (N == row) {
+            print2dArray(board);
+            System.out.println();
+            return;
+        }
+        //        check for all columns
+        for (int j = 0; j < N; j++) {
+            if (isBoardSafe(board, row, j)) { // check if it is safe to place Queen
+                board[row][j] = 1;                // if it is safe -> then place the queen & move to next row
+                f(board, row + 1, N);
+                board[row][j] = 0;
+            }
+        }
+    }
+
+    private static boolean isBoardSafe(int[][] board, int row, int column) {
+        int N = board.length;
+        //for each i and j you need to check in 6 directions, top down, 4 diagonals
+
+        for (int i = row - 1, j = column - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 1) {
+                return false;
+            }
+        }
+
+        for (int i = row + 1, j = column + 1; i < N && j < N; i++, j++) {
+            if (board[i][j] == 1) {
+                return false;
+            }
+        }
+
+        for (int i = row - 1, j = column + 1; i >= 0 && j < N; i--, j++) {
+            if (board[i][j] == 1) {
+                return false;
+            }
+        }
+
+        for (int i = row + 1, j = column - 1; i < N && j >= 0; i++, j--) {
+            if (board[i][j] == 1) {
+                return false;
+            }
+        }
+
+        for (int i = row - 1; i >= 0; i--) {
+            if (board[i][column] == 1) {
+                return false;
+            }
+        }
+
+        for (int i = row + 1; i < N; i++) {
+            if (board[i][column] == 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void print2dArray(int[][] arr) {
+        
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                
+                    System.out.print(arr[i][j]+" ");
+            }
+        
+        }
+        System.out.println();
+    }
+
+
+
+}
