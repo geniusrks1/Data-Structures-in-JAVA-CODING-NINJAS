@@ -1,0 +1,11 @@
+public static void printMin(int []a, int startIndex, int minSoFar) {
+if(startIndex == a.length) {
+System.out.println(minSoFar);
+return;
+}
+int newMinimum = minSoFar;
+if(a[startIndex] < minSoFar){
+newMinimum = a[startIndex];
+}
+printmin(a,startIndex +1, newMinimum);
+}
