@@ -1,0 +1,28 @@
+public class Solution {
+
+	public static boolean ratInAMaze(int maze[][]){
+
+	int n=maze.length;
+        int path[][]=new int [n][n]; // visited matrix
+        return f(maze,n,0,0,path); // 0,0 starting index
+
+	}
+    public static boolean f(int maze[][],int n, int i,int j,int path[][]){
+        // checking i and j is valid or not 
+        if(i<0||i>=n||j<0||j>=n|| maze[i][j]==0|| path[i][j]==1)
+            return false;
+        
+        path[i][j]=1; // including current cell path
+     
+        if(i==n-1 && j==n-1) // checking for destination
+            return true;
+        
+    // exploring in all direction 
+      if(f(maze,n,i+1,j,path) || f(maze,n,i-1,j,path) || f(maze,n,i,j+1,path)|| f(maze,n,i,j-1,path))
+           return true;
+   
+        
+           return false;
+        
+    }
+}
