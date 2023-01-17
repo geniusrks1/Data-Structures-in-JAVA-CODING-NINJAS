@@ -1,0 +1,55 @@
+public class solution {
+	public static void printSubsetsSumTok(int input[], int k) {
+        int n=input.length;
+	int[][] output = f(input,k,0,n);
+        
+        for (int i=0;i<output.length;i++)
+        {
+            int[] arr = output[i];
+            for (int j=0;j<arr.length;j++)
+            {
+                System.out.print(arr[j]+" ");
+            }
+            System.out.println();
+        }
+        
+	}
+    
+    public static int[][] f(int a[], int k,int start,int n) {
+      
+        if (start==n)
+        {
+            int arr[][];
+            if (k==0)
+                 arr = new int[1][0];
+            else
+                arr = new int[0][0];
+            return arr;
+        }
+        
+        
+        int smallAns1[][] = f(a,k-a[start],start+1,n);
+        int smallAns2[][] = f(a,k,start+1,n);
+        int ans[][] = new int[smallAns1.length+smallAns2.length][];
+        
+        int n1=smallAns1.length;
+        int n2=smallAns2.length;
+        
+        for (int i=0;i<n2;i++) {
+           ans[i] = new int[smallAns2[i].length];
+            for (int j=0;j<smallAns2[i].length;j++)
+               ans[i][j]=smallAns2[i][j];
+        } 
+        
+        for (int i=0;i<n1;i++)  {
+            ans[i+smallAns2.length] = new int[smallAns1[i].length+1];
+            ans[i+smallAns2.length][0] = a[start];
+            for (int j=1;j<ans[i+smallAns2.length].length;j++)
+                ans[i+smallAns2.length][j]=smallAns1[i][j-1];
+            
+        }
+        
+        return ans;
+    }
+	}
+
