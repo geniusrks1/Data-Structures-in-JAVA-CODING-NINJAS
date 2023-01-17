@@ -1,0 +1,9 @@
+public static void printsubsequences(String input, String stringSoFar) {
+if(input.length() == 0) {
+System.out.println(stringSoFar);
+return;
+}
+String smallInput = Input.Substring(1);
+printSubsequences(smallInput, stringSoFar);
+printSubsequences(smallInput, stringSoFar + input.charAt(0));
+}
