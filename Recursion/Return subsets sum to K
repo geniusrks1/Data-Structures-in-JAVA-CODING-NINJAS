@@ -1,0 +1,50 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets which sum to k
+	public static int[][] subsetsSumK(int input[], int k) {
+        int n=input.length;
+		return f(input,k,0,n);
+	}
+    
+    public static int[][] f(int a[], int k,int start,int n) {
+      
+        if (start==n)
+        {
+           
+            if (k==0){
+           int arr[][]=new int[1][0];
+           return arr;
+            }
+              
+          if(k!=0){
+            int arr[][] = new int[0][0];
+            return arr;
+        }}
+        
+        
+        int a1[][] = f(a,k-a[start],start+1,n);
+        int a2[][] = f(a,k,start+1,n);
+
+        int n1=a1.length;
+        int n2=a2.length;
+        int a3[][] = new int[n1+n2][];
+        
+        
+        
+        for (int i=0;i<n2;i++) {
+           a3[i] = new int[a2[i].length];
+            for (int j=0;j<a2[i].length;j++)
+               a3[i][j]=a2[i][j];
+        } 
+        
+        for (int i=0;i<n1;i++)  {
+            a3[i+a2.length] = new int[a1[i].length+1];
+            a3[i+a2.length][0] = a[start];
+            for (int j=1;j<a3[i+a2.length].length;j++)
+                a3[i+a2.length][j]=a1[i][j-1];
+            
+        }
+        
+        return a3;
+    }
+}
