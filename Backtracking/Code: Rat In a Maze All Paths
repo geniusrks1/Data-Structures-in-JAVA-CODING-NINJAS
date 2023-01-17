@@ -1,0 +1,55 @@
+/*
+	Note:
+	To get all the test cases accepted, make recursive calls in following order: Top, Down, Left, Right.
+	This means that if the current cell is (x, y), then order of calls should be: top cell (x-1, y), 
+	down cell (x+1, y), left cell (x, y-1) and right cell (x, y+1).
+*/  
+
+public class Solution {
+
+
+	static void ratInAMaze(int maze[][], int n) {
+	
+        // 1,visited matrix
+        int path[][]=new int[n][n];
+                   f(maze,n,0,0,path); // 0,0 starting index
+
+	}
+                   static void f(int maze[][],int n,int i,int j,int path[][]){
+                       // checking for valid i and j
+                       if(i<0||j<0||i>=n||j>=n || maze[i][j]==0|| path[i][j]==1)
+                           return ;
+                   
+                  
+                         // put path[i][j]=1;
+                       path[i][j]=1;
+                       
+                       // if destination found print path
+                       if(i==n-1 && j==n-1){
+                           //  print path matrix
+                           for(int r=0;r<n;r++){
+                               for(int c=0;c<n;c++){
+                                   System.out.print(path[r][c]+" ");
+                               }
+                           }
+                           path[i][j]=0;  // after printing path matrix make destination zero again
+                           System.out.println();
+                           return ;
+                           
+                       }
+                       
+                       
+                         
+                       
+                       // explore all posible direction
+                       f( maze, n,i-1, j, path);
+                       f( maze, n,i+1, j, path);
+                       f( maze, n,i, j-1, path);
+                       f( maze, n,i, j+1, path);
+                           
+                       path[i][j]=0; // so that cell can be included in other path as well
+                       
+                       
+                   }
+
+}
