@@ -1,0 +1,42 @@
+public class Solution {
+
+	/*
+	 * Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> { T data; BinaryTreeNode<T> left; BinaryTreeNode<T> right;
+	 * 
+	 * public BinaryTreeNode(T data) { this.data = data; } }
+	 */
+
+
+	
+	public static int getLCA(BinaryTreeNode<Integer> root, int a, int b) {
+		if(root==null)
+		 return -1;
+		 
+		BinaryTreeNode<Integer> ans = helper(root, a, b);
+		 return ans.data;
+	}
+	public static BinaryTreeNode<Integer> helper(BinaryTreeNode<Integer> root, int a , int b){
+		if (root == null) {
+			return root;
+		}
+
+		if (root.data == a || root.data == b) {
+			return root;
+		}
+
+		BinaryTreeNode<Integer> leftD = helper(root.left, a, b);
+		BinaryTreeNode<Integer> rightD = helper(root.right, a, b);
+
+        if (rightD == null) {
+			return leftD;
+		}
+
+		if (leftD == null) {
+			return rightD;
+		}
+
+		return root;
+	}
+}
