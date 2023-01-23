@@ -1,0 +1,65 @@
+// using recursion
+
+public static int minCount(int n) {
+if(n==0)
+	return 0;
+int	minans=Integer.MAX_VALUE;
+for(int i=1;i*i<=n;i++){
+int smallans= minCount(n-(i*i));
+minans=Math.min(smallans,minans);
+}
+int ans=1+minans;
+return ans;
+}
+}
+
+// using dp first fill base case and then use recursion equation to fill ith index of array==iterative
+
+
+public static int minCount(int n) {
+int dp[]=new int[n+1];
+ dp[0]=0; // base case
+
+for(int j=1;j<=n;j++){
+
+ int minans=Integer.MAX_VALUE;
+	for(int i=1;i*i<=j;i++){
+		int smallans=dp[j-i*i];
+		minans=Math.min(smallans,minans);
+	}
+	dp[j]=1+minans;
+}
+return dp[n];
+	}
+  }
+  
+  
+  
+ //  memoization=recursion+storing // initially dp filled with -1 and its size n+1;
+ // time complexity O(n*sqrt(n))
+ public static int minCount(int n ,int dp[]) {
+ if(n==0)
+ return 0;
+ 
+ int minAns=Integer.MAX_VALUE;
+ for(int i=1;i*i<=n;i++){
+ int currAns=0;
+ if(dp[n-i*i])==-1){
+ currAns=minCount(n-i*i,dp);
+ dp[n-i*i]=currAns;
+ }
+ else
+ currAns=dp[n-i*i];
+ 
+ minAns=Math.min(currAns,minAns);
+ 
+ 
+ }
+ return 1+minAns;
+ 
+ 
+ }
+ 
+ 
+  
+  
