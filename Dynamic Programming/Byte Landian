@@ -1,0 +1,23 @@
+import java.util.HashMap;
+public class Solution {
+    
+	public static long bytelandian(long n, HashMap<Long, Long> memo) {
+        if(n==0||n==1)
+           return n;
+    
+        // if (n <= 11)
+        //     return n;
+
+        if (memo.get(n) != null)
+            return memo.get(n);
+
+     long ans1= bytelandian(n / 2, memo);
+     long ans2=bytelandian(n / 3, memo);
+     long ans3=bytelandian(n / 4, memo);
+     long ans=ans1+ans2+ans3;
+     long maxans=Math.max(ans,n);
+    
+	memo.put(n,maxans);
+	return memo.get(n);
+	}
+    }
