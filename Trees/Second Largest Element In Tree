@@ -56,3 +56,90 @@ public static TreeNode<Integer> findNextSmallerNode(TreeNode<Integer> root, int 
 	
 	
 }
+
+
+
+// using pair class
+
+
+
+class Helper {
+	TreeNode<Integer> max;
+	TreeNode<Integer> secondMax;
+	
+	public Helper(TreeNode<Integer> max, TreeNode<Integer> secondMax) {
+		this.max = max;
+		this.secondMax = secondMax;
+	}
+}
+
+public class Solution {
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	
+		
+	public static Helper help(TreeNode<Integer> root) {
+		if(root == null) {
+			Helper ans = new Helper(null,null);
+			return ans;
+		}
+		
+		Helper ans = new Helper(root,null);
+		for(int i = 0; i < root.children.size(); i++) {
+			Helper child = help(root.children.get(i));
+			if(child.max.data > ans.max.data) {
+				if(child.secondMax == null || child.secondMax.data<ans.max.data) {
+					ans.secondMax = ans.max;
+					ans.max = child.max;
+				}
+				else {
+					ans.max=child.max;
+					ans.secondMax=child.secondMax;
+					}
+				}
+			
+else if(child.max.data==ans.max.data && child.secondMax!=null){
+	if(ans.secondMax==null || child.secondMax.data>ans.secondMax.data){
+		ans.secondMax=child.secondMax;
+	}
+}
+
+
+			else {
+				if(ans.max.data != child.max.data && (ans.secondMax == null || child.max.data > ans.secondMax.data)) {
+					ans.secondMax = child.max;
+				}
+			}
+		}
+		return ans;
+		
+	}
+
+
+	public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root){
+		if (root == null) return null;
+		Helper ans = help(root);
+		return ans.secondMax;
+
+		// Write your code here
+
+	}
+	
+	
+}
+
+
+
+
+
+
