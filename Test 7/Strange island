@@ -1,0 +1,105 @@
+/* if the corresponding cell in the input matrix is a sea cell or a land cell surrounded by at least three sea cells, the result is a sea cell;
+    otherwise, it is a land cell */
+    
+    
+    
+    
+    
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+     // taking input
+		Scanner s = new Scanner(System.in);
+		int R = s.nextInt();
+		int C = s.nextInt();
+	   char[][] map = new char[R][C];
+	 
+		for (int i = 0; i < R; i++) {
+           String str=s.next();
+			for(int j=0;j<C;j++){
+				map[i][j]=str.charAt(j);
+			}
+		}
+
+// complete map X converted into dot when 3 or more direction its dot
+char[][] Ansmap=findMap1(map,R,C);
+// we print only require rectangle that contains all the X
+findMap(Ansmap, R,C);
+
+	}
+public static char[][] findMap1(char mat[][] ,int r ,int c){
+
+char mat1[][]=new char[r][c];
+
+for(int i=0;i<r;i++){
+	for(int j=0;j<c;j++){
+		if(mat[i][j]=='X' && isNotfloded(mat,i,j,r,c))
+		mat1[i][j]='X';
+		else
+		mat1[i][j]='.';
+	}
+}
+
+return mat1;
+}
+
+public static void findMap(char mat[][] ,int r ,int c){
+
+int rmax=0;
+int rmin=r-1;
+int cmax= 0;
+int cmin=c-1;
+
+
+for(int i=0;i<r;i++){
+	for(int j=0;j<c;j++){
+if(mat[i][j]=='X'){
+rmax=Math.max(rmax,i);
+rmin=Math.min(rmin,i);
+cmax=Math.max(cmax,j);
+cmin=Math.min(cmin,j);
+}
+	}
+}
+
+
+for(int i=rmin;i<=rmax;i++){
+	for(int j=cmin;j<=cmax;j++){
+System.out.print(mat[i][j]);
+ }
+ System.out.println();
+}
+
+}
+
+
+
+
+
+public static boolean isNotfloded(char mat[][], int i ,int j,int r ,int c){
+
+int count=0;
+// +x direction i+1, 
+if(j+1>=c || mat[i][j+1]=='.')
+count++;
+//-x direction
+if(j-1<0 || mat[i][j-1]=='.')
+count++;
+// +y direction
+if(i-1<0 || mat[i-1][j]=='.')
+count++;
+// -y direction
+if(i+1>=r || mat[i+1][j]=='.')
+count++;
+
+if(count<3)
+return true;
+else
+return false;
+
+}
+
+		}
+	
