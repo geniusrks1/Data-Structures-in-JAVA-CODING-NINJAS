@@ -198,7 +198,85 @@ public class Solution {
 
 
 
+//method 3
 
+
+import java.util.*;
+ class BSTIterator
+ {
+     //Stack<TreeNode> stack = new Stack<Integer>();
+    Stack<BinaryTreeNode<Integer>> stack = new Stack<BinaryTreeNode<Integer>>();
+     boolean reverse = true;
+     public BSTIterator(BinaryTreeNode<Integer> root , boolean isreverse)
+     {
+        reverse = isreverse;
+        pushAll(root);
+     }
+     public boolean hasnext()
+     {
+         return !stack.isEmpty();
+     }
+     public int next()
+     {
+         BinaryTreeNode<Integer> tempNode = stack.pop();
+         if(reverse==false) pushAll(tempNode.right);
+         else pushAll(tempNode.left);
+         return tempNode.data;
+     }
+     public void pushAll(BinaryTreeNode<Integer> node)
+     {
+         while(node!=null)
+         {
+             stack.push(node);
+             if(reverse==true) 
+             {node = node.right;}
+             else 
+             {node = node.left;}
+         }
+     }
+
+ }
+public class Solution {
+	/*
+	 * BinaryTreeNode class
+	 * 
+	 * class BinaryTreeNode<T> 
+	 * { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 *		public BinaryTreeNode(T data) 
+	 *		{
+	 *  		this.data = data; 
+	 *  	} 
+	 *  }
+	 */
+	
+	public static void printNodesSumToS(BinaryTreeNode<Integer> root, int s) {
+		// Write your code here
+		if(root==null) return ;
+        BSTIterator l = new BSTIterator(root , false);
+        BSTIterator r = new BSTIterator(root , true);
+
+        int i = l.next();
+        int j = r.next();
+
+        while(i<j)
+        {
+            if(i+j==s)
+            {
+            System.out.println(i+" "+j);
+            i=l.next(); j = r.next();
+            }
+            else if(i+j<s) 
+           { i=l.next();}
+            else 
+            {j=r.next();}
+        }
+       
+	}
+
+}
 
 
 
