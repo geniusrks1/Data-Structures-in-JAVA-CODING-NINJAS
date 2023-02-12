@@ -7,4 +7,8 @@ a graph is complete graph and tree as well == complete graph means each vertex c
 A: The number of odd degree vertices in a graph is even.
 B: Sum of all degrees in a graph is even.
 time complexity of finding an edge between two vertices using adjacency matrix mat[v1][v2]
-
+What is the space complexity used in case of :
+i)  Edge List           O(n+E)
+ii) Adjacency List      O(n+2E)  
+iii) Adjacency Matrix   O(n^2) 
+Depth First Search is equivalent to  == preOrder Traversal
