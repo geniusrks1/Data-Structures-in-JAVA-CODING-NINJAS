@@ -1,0 +1,10 @@
+1. all trees are graph
+2. maximum number of edges in undirected graph vC2=v(v-1)/2;
+connected graph- we can reach one node any node
+degree of any vertex= number of edges connected to that
+connected compenets means = individulal connected sub graphs
+a graph is complete graph and tree as well == complete graph means each vertex conected with very vertex=ans=2;
+A: The number of odd degree vertices in a graph is even.
+B: Sum of all degrees in a graph is even.
+time complexity of finding an edge between two vertices using adjacency matrix mat[v1][v2]
+
