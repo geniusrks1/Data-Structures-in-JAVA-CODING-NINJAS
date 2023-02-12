@@ -1,0 +1,45 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+        
+        Scanner s= new Scanner(System.in);
+        int V=s.nextInt();
+        int E=s.nextInt();
+        if(V==0)
+            return ;
+        
+        int mat[][]=new int[V][V];
+        
+        for(int i=0;i<E;i++){
+            int V1=s.nextInt();
+            int V2=s.nextInt();
+            mat[V1][V2]=1;
+            mat[V2][V1]=1;
+        }
+       depthFirstTraversal(mat);
+        
+	}}
+  
+  
+  // for disconnected components
+  
+    public static void depthFirstTraversal(int adjMat[][]) {
+		boolean visited []=new boolean [adjMat.length];
+		for(int i=0; i< adjMat.length; i++){
+            if(!visited[i]){
+                dft(adjMat, i, visited);   
+            }
+	}
+    }
+    
+    
+    
+  private static void dft(int[][] adjMat, int currentVertex,boolean[] visited) { 
+		visited[currentVertex]=true;
+		System.out.print(currentVertex+" ");
+		for(int i=0;i<adjMat.length;i++) {
+			if(adjMat[currentVertex][i]==1 && visited[i]==false) {      // exploring all unvisted neighers of currenVertex
+				dft(adjMat,i,visited);
+			}
+		}
+		
+	}
+    
