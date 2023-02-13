@@ -1,3 +1,4 @@
+
 public class Solution {
 	public static int PairSum(int[] input, int size) {
 		 if(size==0)
@@ -9,27 +10,16 @@ public class Solution {
         for(int i=0;i<size;i++) {   
             if(h.containsKey(-input[i]) && h.get(-input[i])!=0){
                 count+=h.get(-input[i]);
-                
-                if(h.containsKey(input[i]))
-                    h.put(input[i],h.get(input[i])+1);
-                else
-                    h.put(input[i],1);
+              
             }
             
-            
-            
-            else{
                 if(h.containsKey(input[i]))
                     h.put(input[i],h.get(input[i])+1);
                 else
                     h.put(input[i] ,1);
-                }
+                
             } 
-    
-
         return count;
-        
-        
-        
+       
 	}
 }
