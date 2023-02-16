@@ -5,6 +5,11 @@
 4. by using union algorthm pick only those edges whose both vertex having different parent and after picking up update both vertex paraents and increase count++ */ 
 //create a output array of n-1 size , in a MST of n vertices, no. of edges = n-1
  //create a parent arary with size same as number of vertices //initialize all nodes parent to teh node themshleves
+// time complexity 
+                  // 1. take input E
+                 //  2. sort the edges ElogE
+                //   3. pick n-1 edges and put them into MST BY USIng Union Algorthm  for 1 edges its V and for E edges its EV
+               //     total tc= E+ElogE+EV  =EV     =V^3   (E=V^2 in wrost case)
 
 
 
@@ -87,7 +92,12 @@ public Edge(int source, int dest, int weight){
 	}
     
     
-    
+    // Union Find with rank and compressed with it will reduce cycle detection into logV
+	// tc=E+ElogE+ElogV =ElogV         =V^2logV
+	
+	
+	
+	
     
     
     
