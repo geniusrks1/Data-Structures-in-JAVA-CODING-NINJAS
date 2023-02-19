@@ -14,10 +14,9 @@ public class Solution {
                     
                  if(st.isEmpty())
                      return false;
-                  else if(st.peek()=='(')
+                  else 
                    st.pop();
-                  else
-                   return false; 
+                
                }
                
              } 
