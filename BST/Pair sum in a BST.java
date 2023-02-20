@@ -282,5 +282,43 @@ public class Solution {
 
 
 
+method 3
+	
+	
+	
+	public static void printNodesSumToS(BinaryTreeNode<Integer> root, int sum) {
+		 if(root==null)
+            return;
+			ArrayList<Integer> list=new ArrayList<>();
+            f(root,list);
+     
+        int i=0;
+        int j=list.size()-1;
+        while(i<j){
+            if(list.get(i)+list.get(j)==sum)
+                System.out.println(list.get(i++)+" "+ list.get(j--));
+            else if(list.get(i)+ list.get(j)<sum)
+                i++;
+            else 
+                j--;
+        }
+    }
+    private static void f(BinaryTreeNode<Integer> root, ArrayList<Integer> list){
+
+        if(root==null)
+            return ;
+
+f(root.left,list);
+list.add(root.data);
+f(root.right,list);
+      
+    }
+
+} 
+
+
+
+
+
 
 
