@@ -1,0 +1,67 @@
+// using recursion
+public class Solution{
+
+
+    public static int getMinimumStrength(int[][] grid) {
+        
+        int n=grid.length;
+        int m=grid[0].length;
+        return f(grid,0,0,n,m);
+        }
+
+        
+    public static int f(int [][]grid,int i,int j,int n,int m ){
+        if(i>=n||j>=m)
+            return Integer.MAX_VALUE;
+
+        if(i==n-1 && j==m-1)
+            return grid[i][j]<=0 ?  grid[i][j]+1 :1;
+  
+            
+
+        int x=f(grid,i,j+1,n,m);
+        int y=f(grid,i+1,j,n,m);
+        
+        int minhealth=Math.min(x,y)-grid[i][j];
+     
+        return minhealth<=0? 1: minhealth;
+            
+    }}
+
+
+// dp
+
+
+
+public class Solution {
+
+    public static int getMinimumStrength(int[][] points) {
+        int R = points.length;
+        int C = points[0].length;
+
+        int dp[][] = new int[R][C];
+        int m = R, n = C;
+
+        // Base case
+        dp[m - 1][n - 1] = points[m - 1][n - 1] > 0   ? 1: Math.abs(points[m - 1][n - 1]) + 1;
+
+        // Fill last row and last column as base to fill entire table
+        for (int i = m - 2; i >= 0; i--)
+            dp[i][n - 1] = Math.max(
+                    dp[i + 1][n - 1] - points[i][n - 1], 1);
+        for (int j = n - 2; j >= 0; j--)
+            dp[m - 1][j] = Math.max(
+                    dp[m - 1][j + 1] - points[m - 1][j], 1);
+
+        // fill the table in bottom-up fashion
+        for (int i = m - 2; i >= 0; i--) {
+            for (int j = n - 2; j >= 0; j--) {
+                int min_points_on_exit = Math.min(dp[i + 1][j], dp[i][j + 1]);
+                dp[i][j] = Math.max(min_points_on_exit - points[i][j], 1);
+            }
+        }
+
+        return dp[0][0];
+
+    }
+}
