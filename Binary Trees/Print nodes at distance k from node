@@ -74,3 +74,82 @@ public class Solution {
 
 
 
+// using level order traversal parent child reletionship used as well
+import java.util.*;
+
+public class Solution {
+
+    public static BinaryTreeNode<Integer> target(BinaryTreeNode<Integer> root, int node) {
+        if (root == null || root.data == node) {
+            return root;
+        }
+
+        BinaryTreeNode<Integer> leftResult = target(root.left, node);
+        if (leftResult != null) {
+            return leftResult;
+        }
+
+        return target(root.right, node);
+    }
+
+    public static void childParent(HashMap<BinaryTreeNode<Integer>, BinaryTreeNode<Integer>> map, BinaryTreeNode<Integer> root) {
+        if (root == null) return;
+
+        if (root.left != null) map.put(root.left, root);
+        if (root.right != null) map.put(root.right, root);
+
+        childParent(map, root.left);
+        childParent(map, root.right);
+    }
+
+    public static void nodesAtDistanceK(BinaryTreeNode<Integer> root, int node, int k) {
+        if (root == null) return;
+        
+        // Create a map to store parent-child relationships
+        HashMap<BinaryTreeNode<Integer>, BinaryTreeNode<Integer>> map = new HashMap<>();
+        childParent(map, root);
+
+        // Find the target node
+        BinaryTreeNode<Integer> target = target(root, node);
+        if (target == null) return;
+
+        Queue<BinaryTreeNode<Integer>> q = new LinkedList<>();
+        HashSet<BinaryTreeNode<Integer>> visited = new HashSet<>();
+
+        // Enqueue the target node
+        q.add(target);
+        visited.add(target);
+
+      
+        while (!q.isEmpty()) {
+            int size = q.size();
+            if (k==0) {
+                // Collect all nodes at distance K
+                while (size-- > 0) {
+                    BinaryTreeNode<Integer> curr = q.poll();
+                    System.out.println(curr.data); // Print the node data
+                }
+                return;
+            }
+
+			
+            // Traverse the current level
+            while (size-- > 0) {
+                BinaryTreeNode<Integer> curr = q.poll();
+                if (curr.left != null && visited.add(curr.left)) {
+                    q.add(curr.left);
+                }
+                if (curr.right != null && visited.add(curr.right)) {
+                    q.add(curr.right);
+                }
+                BinaryTreeNode<Integer> parent = map.get(curr);
+                if (parent != null && visited.add(parent)) {
+                    q.add(parent);
+                }
+            }
+            k--;
+        }
+    }
+}
+
+
