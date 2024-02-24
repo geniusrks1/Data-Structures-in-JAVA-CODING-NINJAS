@@ -96,3 +96,29 @@ TrieNode matchword=findword(word);
         return findword(child, word.substring(1));
     } 
 }
+
+
+
+///     
+private void search(TrieNode root, String word, String printWord) {
+    if (word.length() == 0) {
+        if (root.isTerminating) {
+            System.out.println(printWord);
+        }
+        for (int i = 0; i < 26; i++) {
+            if (root.children[i] != null) {
+                search(root.children[i], "", printWord + root.children[i].data);
+            }
+        }
+        return;
+    }
+
+    int childIndex = word.charAt(0) - 'a';
+    TrieNode child = root.children[childIndex];
+    if (child == null) {
+        return;
+    }
+    search(child, word.substring(1), printWord + child.data);
+}
+
+
