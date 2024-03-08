@@ -121,3 +121,47 @@ public class Trie {
 		return false;
 	}	
 } 
+
+
+
+
+
+// more readiable
+
+/*..................... Palindrome Pair................... */
+  public boolean isPalindromePair(ArrayList<String> words) {
+        // Check if any word is a palindrome itself
+        for (String word : words) {
+            if (isPalindrome(word)) {
+                return true;
+            }
+        }
+
+        // Check if any pair of words can be joined to form a palindrome
+        for (int i = 0; i < words.size(); i++) {
+            String word1 = words.get(i);
+            for (int j = 0; j < words.size(); j++) {
+                if (i != j) {
+                    String word2 = words.get(j);
+                    if (isPalindrome(word1 + word2)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isPalindrome(String str) {
+        int left = 0;
+        int right = str.length() - 1;
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
