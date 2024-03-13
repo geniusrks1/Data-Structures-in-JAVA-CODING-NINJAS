@@ -47,3 +47,60 @@ public static BinaryTreeNode<Integer> buildTreeHelper(int[] postOrder,int postst
 
 return root;
 }}
+
+
+
+
+
+
+
+
+
+
+//
+
+class Solution {
+    int idx; // Global variable to keep track of current index in postorder array
+    int inorder[];
+    int postorder[];
+    public TreeNode buildTree(int[] in, int[] post) {
+        inorder=in;
+        postorder=post;
+        int n = inorder.length; // Length of inorder array
+        idx = n - 1; // Initialize idx to the last index of postorder array
+        return constructTree(0, n - 1); // Call helper function to construct the binary tree recursively
+    }
+
+    TreeNode constructTree(int start, int end) {
+        // Base case: If start index exceeds end index, return null indicating empty subtree
+        if (start > end) {
+            return null;
+        }
+
+        // Recursive case:
+        // Find the value of the current root node from the postorder array
+        int val = postorder[idx];
+        idx--; // Move to the left in postorder array
+
+        // Find the index of the current root value in the inorder array
+        int k = -1;
+        for (int i = start; i <= end; i++) {
+            if (inorder[i] == val) {
+                k = i;
+                break;
+            }
+        }
+
+        // Create a new TreeNode with the value of the current root
+        TreeNode root = new TreeNode(val);
+
+        // Recursively construct the right subtree first
+        // (since postorder traversal visits root, right, left in reverse order)
+        root.right = constructTree(k + 1, end);
+
+        // Recursively construct the left subtree
+        root.left = constructTree(start, k - 1);
+
+        return root; // Return the constructed root node
+    }
+}
