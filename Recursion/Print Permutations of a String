@@ -17,3 +17,44 @@ public class solution {
 		}	
 	}
 }
+
+
+
+///
+
+import java.util.*;
+public class solution {
+
+
+ static int n;
+ static char arr[];
+	public static void permutations(String input){
+       arr=input.toCharArray();
+		n=input.length();
+		f(0);
+	
+	}
+
+	public static void f(int start){
+		if(start==n){
+			for(char ch :arr)
+			System.out.print(ch);
+			System.out.println();
+			return;
+		}
+
+
+		for(int  i=start;i<n;i++){
+			swap(arr,i,start);
+			f(start+1);
+			swap(arr,i ,start);
+		}
+
+	}
+
+	public static void swap(char temp[], int i, int j){
+		char ch=temp[i];
+		temp[i]=temp[j];
+		temp[j]=ch;
+	}
+}
