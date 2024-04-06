@@ -100,6 +100,16 @@ TrieNode matchword=findword(word);
 
 
 ///     
+
+   public void autoComplete(ArrayList<String> input, String prefix) {
+    int n=input.size();
+		for(int i=0;i<n;i++)
+		add(input.get(i));
+        
+    search(root,prefix,"");
+       
+    }
+
 private void search(TrieNode root, String word, String printWord) {
     if (word.length() == 0) {
         if (root.isTerminating) {
