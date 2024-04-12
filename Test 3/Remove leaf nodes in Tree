@@ -39,3 +39,51 @@ public class Solution {
 		
 	}
 
+
+// level order traversal
+
+import java.util.*;
+
+public class Solution {
+
+	/*	TreeNode structure 
+	 * 
+	 * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+
+	public static TreeNode<Integer> removeLeafNodes(TreeNode<Integer> root) {
+	
+  if (root == null)
+            return null;
+
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> current = queue.remove();
+            ArrayList<TreeNode<Integer>> children = current.children;
+            ArrayList<TreeNode<Integer>> newChildren = new ArrayList<>();
+
+            for (TreeNode<Integer> child : children) {
+                if (!child.children.isEmpty()) {
+                    newChildren.add(child);
+                    queue.add(child);
+                }
+            }
+
+            current.children = newChildren;
+        }
+
+        return root;
+
+		
+	}
+}
+
