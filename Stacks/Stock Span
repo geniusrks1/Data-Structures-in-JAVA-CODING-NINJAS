@@ -1,3 +1,60 @@
+// using pair class 
+
+
+import java.util.*;
+
+class Pair{
+	int price;
+	int span;
+
+	public Pair(int first, int s){
+		price=first;
+		span=s;
+	}
+}
+
+
+public class Solution {
+
+	public static int[] stockSpan(int[] prices) {
+
+
+       int n = prices.length;
+        int[] ans = new int[n];
+        Stack<Pair> stack = new Stack<>();
+
+		for(int i=0;i<n;i++){
+			if(stack.isEmpty()){
+               stack.push(new Pair(prices[i],1));
+			   ans[i]=1;
+			}
+
+			else{
+
+int count=1;
+while( !stack.isEmpty() && stack.peek().price<prices[i]){
+Pair p=stack.pop();
+count+=p.span;
+}
+
+ans[i]=count;
+stack.push(new Pair(prices[i],count));
+
+			}
+		}
+
+ 
+     return ans;
+	}
+
+}
+
+
+
+
+
+
+
 import java.util.Stack;
 import java.util.ArrayList;
 public class Solution {
@@ -30,3 +87,4 @@ return ans;
 	}
 
 }
+
