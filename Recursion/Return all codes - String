@@ -43,6 +43,41 @@ public class solution {
 
 
 
+public class solution {
+	static int n=0;
+	public static  String[] getCode(String input){
+
+		n=input.length();
+		f(input,0,"");
+		return new String[0];
+	
+		
+	}
+
+	public static void f(String input, int start, String str) {
+    if (start== n) {
+        System.out.println(str);
+        return;
+    }
+
+    
+    char sc = (char) ('a' + (input.charAt(start) - '1'));
+    char dc = ' ';
+    int tdn = 0;
+
+    f(input, start + 1, str+sc);
+
+    if (start+1<n) {
+        tdn = Integer.parseInt(input.substring(start, start + 2));
+        dc = (char) ('j' + (tdn - 10));
+    }
+
+    if (tdn >= 10 && tdn <= 26) {
+        f(input, start + 2, str+dc);
+    }
+}
+
+	}
 
 
 
